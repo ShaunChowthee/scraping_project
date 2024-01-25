@@ -1,14 +1,12 @@
+require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-require "httparty"
-
+   
 page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/"))
 tbody = page.xpath("//tbody")
 
-def main (path, page)
-  reponse = HTTParty.get(page)
-  return false unless response.success?
 
+def main (path)
   crypto_list = []
   path.xpath(".//tr").each do |row|
     name = row.xpath('.//td[3]').text
